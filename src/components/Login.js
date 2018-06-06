@@ -27,7 +27,7 @@ class Login extends Component {
 
   handleSubmit(event) {
     if (this.state.username && this.state.password) {
-      fetch('https://juice.pod.party/login', {
+      fetch(this.props.APIurl + 'login', {
         body: JSON.stringify( {
           username: this.state.username,
           password: this.state.password
@@ -39,13 +39,18 @@ class Login extends Component {
         method: 'POST',
       })
         .then(response => {
-          return response.json()
+          if (response.status === 200) {
+            return response.json()
+          } else {
+            throw new Error('Response code not 200')
+          }
         })
         .then(data => {
           this.props.handleToken(data.token)
-          //console.log(data)
         })
-        .catch(error => console.error(error))
+        .catch(error => {
+          // bad password
+        })
     }
     event.preventDefault()
   }

@@ -11,7 +11,8 @@ class App extends Component {
 
     this.state = {
       loggedIn: false,
-      token: ''
+      token: '',
+      activeLink: ''
     }
   }
 
@@ -26,11 +27,16 @@ class App extends Component {
 
   render() {
     const loggedIn = this.state.loggedIn
-    const form = loggedIn ? null : ( <Login handleToken={this.setToken} /> )
+    const form = loggedIn ? null : (
+      <Login 
+        handleToken={this.setToken}
+        APIurl={this.APIurl}
+      />
+    )
 
     return (
       <div className="App">
-        <Navbar />
+        <Navbar activeLink={this.state.activeLink}/>
         {form}
       </div>
     );
