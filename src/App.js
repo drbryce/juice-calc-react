@@ -5,6 +5,8 @@ import FlavorPage from './components/FlavorPage'
 import BrandPage from './components/BrandPage'
 import OrderPage from './components/OrderPage'
 import Navbar from './components/Navbar'
+import RecipeIndividual from './components/Recipe/RecipeIndividual'
+import DBController from './dbController'
 import './App.css';
 
 class App extends Component {
@@ -14,16 +16,34 @@ class App extends Component {
     this.setActiveLink = this.setActiveLink.bind(this)
     this.setToken = this.setToken.bind(this)
     this.logOut = this.logOut.bind(this)
-    this.updateBrands = this.updateBrands.bind(this)
+    this.loginCallBack = this.loginCallBack.bind(this)
 
     this.state = {
       loggedIn: false,
       token: '',
-      activeLink: 'recipe'
+      activeLink: 'recipe',
+      brandList: [],
+      flavorList: [],
+      recipeList: [],
+      orderList: [],
+      currentRecipe: ''
     }
   }
 
   APIurl = 'https://juice.pod.party/'
+
+  loginCallBack(user, pass) {
+    DBController.tryLogin(user, pass)
+    .then(response => { this.setToken(response.token) })
+    .then(() => { DBController.updateBrands(this.state.token)
+    .then(response => { this.setState({brandList: response})})})
+    .then(() => { DBController.updateFlavors(this.state.token)
+    .then(response => { this.setState({flavorList: response})})})
+    .then(() => { DBController.updateRecipes(this.state.token)
+    .then(response => { this.setState({recipeList: response})})})
+    .then(() => { DBController.updateOrders(this.state.token)
+    .then(response => { this.setState({orderList: response})})})
+    }
 
   setToken(token) {
     this.setState({
@@ -45,34 +65,6 @@ class App extends Component {
     })
   }
 
-  updateBrands() {
-    if (this.state.loggedIn) {
-      fetch(this.APIurl + 'brand/listjson', {
-        headers: {
-          'user-agent': 'React Juice Calculator',
-          'content-type': 'application/json',
-          'token': this.state.token
-        },
-        method: 'GET',
-      })
-        .then(response => {
-          if (response.status === 200) {
-            return response.json()
-          } else {
-            throw new Error('Response code not 200')
-          }
-        })
-        .then(data => {
-          //this.props.handleToken(data.token)
-          console.log(data)
-        })
-        .catch(error => {
-          // error
-        })
-    }
-  }
-  
-
   render() {
     const navBar = (
       <Navbar 
@@ -89,16 +81,18 @@ class App extends Component {
           handleToken={this.setToken}
           APIurl={this.APIurl}
           successFunc={this.updateBrands}
+          loginCallBack={this.loginCallBack}
         />
       </div>
     )
 
     // We're logged in so return a page.
     const linkNames = {
-      'recipe': <RecipePage />,
-      'flavor': <FlavorPage />,
-      'brand': <BrandPage />,
-      'order': <OrderPage />
+      'recipe': <RecipePage recipeList={this.state.recipeList} setActiveLink={this.setActiveLink}/>,
+      'flavor': <FlavorPage flavorList={this.state.flavorList}/>,
+      'brand': <BrandPage brandList={this.state.brandList}/>,
+      'order': <OrderPage orderList={this.state.orderList}/>,
+      'view-recipe': <RecipeIndividual />
     }
 
     const buildLink = (name) => {

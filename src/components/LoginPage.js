@@ -27,31 +27,7 @@ class LoginPage extends Component {
 
   handleSubmit(event) {
     if (this.state.username && this.state.password) {
-      fetch(this.props.APIurl + 'login', {
-        body: JSON.stringify( {
-          username: this.state.username,
-          password: this.state.password
-        }),
-        headers: {
-          'user-agent': 'React Juice Calculator',
-          'content-type': 'application/json'
-        },
-        method: 'POST',
-      })
-        .then(response => {
-          if (response.status === 200) {
-            return response.json()
-          } else {
-            throw new Error('Response code not 200')
-          }
-        })
-        .then(data => {
-          this.props.handleToken(data.token)
-          this.props.successFunc()
-        })
-        .catch(error => {
-          // bad password
-        })
+        this.props.loginCallBack(this.state.username, this.state.password)
     }
     event.preventDefault()
   }
@@ -59,7 +35,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} method="post">
           <label>
             Username:
             <input type="text" name="username" onChange={this.handleChange} />
