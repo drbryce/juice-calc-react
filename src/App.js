@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import Login from './components/Login'
+import LoginPage from './components/LoginPage'
+import RecipePage from './components/RecipePage'
+import FlavorPage from './components/FlavorPage'
+import BrandPage from './components/BrandPage'
+import OrderPage from './components/OrderPage'
 import Navbar from './components/Navbar'
 import './App.css';
 
@@ -7,12 +11,15 @@ class App extends Component {
   constructor(props) {
     super(props)
 
+    this.setActiveLink = this.setActiveLink.bind(this)
     this.setToken = this.setToken.bind(this)
+    this.logOut = this.logOut.bind(this)
+    this.updateBrands = this.updateBrands.bind(this)
 
     this.state = {
       loggedIn: false,
       token: '',
-      activeLink: ''
+      activeLink: 'recipe'
     }
   }
 
@@ -25,21 +32,86 @@ class App extends Component {
     })
   }
 
+  setActiveLink(link) {
+    this.setState({
+      activeLink: link
+    })
+  }
+
+  logOut() {
+    this.setState({
+      loggedIn: false,
+      token: ''
+    })
+  }
+
+  updateBrands() {
+    if (this.state.loggedIn) {
+      fetch(this.APIurl + 'brand/listjson', {
+        headers: {
+          'user-agent': 'React Juice Calculator',
+          'content-type': 'application/json',
+          'token': this.state.token
+        },
+        method: 'GET',
+      })
+        .then(response => {
+          if (response.status === 200) {
+            return response.json()
+          } else {
+            throw new Error('Response code not 200')
+          }
+        })
+        .then(data => {
+          //this.props.handleToken(data.token)
+          console.log(data)
+        })
+        .catch(error => {
+          // error
+        })
+    }
+  }
+  
+
   render() {
-    const loggedIn = this.state.loggedIn
-    const form = loggedIn ? null : (
-      <Login 
-        handleToken={this.setToken}
-        APIurl={this.APIurl}
+    const navBar = (
+      <Navbar 
+        activeLink={this.state.activeLink}
+        logOut={this.logOut}
+        setActiveLink={this.setActiveLink}
       />
     )
 
-    return (
+    // Not logged in so return login page.
+    if (!this.state.loggedIn) return (
       <div className="App">
-        <Navbar activeLink={this.state.activeLink}/>
-        {form}
+        <LoginPage 
+          handleToken={this.setToken}
+          APIurl={this.APIurl}
+          successFunc={this.updateBrands}
+        />
       </div>
-    );
+    )
+
+    // We're logged in so return a page.
+    const linkNames = {
+      'recipe': <RecipePage />,
+      'flavor': <FlavorPage />,
+      'brand': <BrandPage />,
+      'order': <OrderPage />
+    }
+
+    const buildLink = (name) => {
+      return (
+      <div className="App">
+        {navBar} 
+        {linkNames[name]}
+      </div>
+     )
+    }
+
+    return buildLink(this.state.activeLink)
+
   }
 }
 

@@ -1,25 +1,39 @@
 import React, { Component } from 'react'
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(event) {
+    if(event.target.name === 'logout') {
+      this.props.logOut()
+    } else {
+      this.props.setActiveLink(event.target.name)
+    }
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="1">Navbar</a>
+        <p className="navbar-brand" href="1">Navbar</p>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link">Recipe</a>
+            <a className="nav-link" name="recipe" onClick={this.handleClick}>Recipe</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link">Flavor</a>
+            <a className="nav-link" name="flavor" onClick={this.handleClick}>Flavor</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link">Brand</a>
+            <a className="nav-link" name="brand" onClick={this.handleClick}>Brand</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link">Order</a>
+            <a className="nav-link" name="order" onClick={this.handleClick}>Order</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link">Logout</a>
+            <a className="nav-link" name="logout" onClick={this.handleClick}>Logout</a>
           </li>
         </ul>
       </nav>
