@@ -6,7 +6,6 @@ class OrderPage extends Component {
     const mappedList = this.props.orderList.map((item) => <li key={item._id}><OrderIndividual item={item}/></li> )
     return (
       <div>
-        order page
         <ul>
           {mappedList}
         </ul>

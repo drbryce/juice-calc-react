@@ -26,7 +26,7 @@ class App extends Component {
       flavorList: [],
       recipeList: [],
       orderList: [],
-      currentRecipe: ''
+      pageModifier: ''
     }
   }
 
@@ -52,9 +52,11 @@ class App extends Component {
     })
   }
 
-  setActiveLink(link) {
+  setActiveLink(link, modifier) {
+    if (!modifier) modifier = ''
     this.setState({
-      activeLink: link
+      activeLink: link,
+      pageModifier: modifier
     })
   }
 
@@ -92,7 +94,13 @@ class App extends Component {
       'flavor': <FlavorPage flavorList={this.state.flavorList}/>,
       'brand': <BrandPage brandList={this.state.brandList}/>,
       'order': <OrderPage orderList={this.state.orderList}/>,
-      'view-recipe': <RecipeIndividual />
+      'view-recipe': <RecipeIndividual 
+                        recipeList={this.state.recipeList}
+                        flavorList={this.state.flavorList}
+                        brandList={this.state.brandList}
+                        orderList={this.state.orderList}
+                        recipeID={this.state.modifier}
+                        />
     }
 
     const buildLink = (name) => {

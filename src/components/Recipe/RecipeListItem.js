@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 
 class RecipeListItem extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleClick = this.handleClick.bind(this)
+  }
 
   handleClick(event) {
     //alert(event.target.id)
-    this.props.setActiveLink('recipe-individual')
+    this.props.setActiveLink('recipe-individual', 'test')
   }
   render() {
     return (

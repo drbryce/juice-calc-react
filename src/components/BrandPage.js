@@ -5,7 +5,6 @@ class BrandPage extends Component {
     const mappedList = this.props.brandList.map((item) => <li key={item._id}>{item.shortname} : {item.longname}</li> )
     return (
       <div>
-        brand page
         <ul>
           {mappedList}
         </ul>

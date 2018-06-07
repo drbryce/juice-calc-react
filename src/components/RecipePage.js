@@ -7,12 +7,11 @@ class RecipePage extends Component {
     const mappedList = this.props.recipeList.map((item) => <li key={item._id}>
       <RecipeListItem 
         item={item} 
-        setActiveLink={this.setActiveLink}
+        setActiveLink={this.props.setActiveLink}
       />
     </li> )
     return (
       <div>
-        recipe page
         <ul>
           {mappedList}
         </ul>
