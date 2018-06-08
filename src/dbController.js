@@ -3,7 +3,6 @@ class DBController {
   static APIurl = 'https://juice.pod.party/'
 
   static tryLogin(user, pass) {
-    console.log(this.APIurl + 'login')
     const response = fetch(this.APIurl + 'login', {
       body: JSON.stringify( {
         username: user,

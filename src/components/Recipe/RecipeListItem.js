@@ -9,7 +9,7 @@ class RecipeListItem extends Component {
 
   handleClick(event) {
     //alert(event.target.id)
-    this.props.setActiveLink('recipe-individual', 'test')
+    this.props.setActiveLink('view-recipe', event.target.id)
   }
   render() {
     return (

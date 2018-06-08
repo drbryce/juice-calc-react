@@ -88,6 +88,7 @@ class App extends Component {
       </div>
     )
 
+    const currentRecipe = this.state.recipeList[this.state.recipeList.findIndex((recipe) => { return recipe._id === this.state.pageModifier })]
     // We're logged in so return a page.
     const linkNames = {
       'recipe': <RecipePage recipeList={this.state.recipeList} setActiveLink={this.setActiveLink}/>,
@@ -95,11 +96,10 @@ class App extends Component {
       'brand': <BrandPage brandList={this.state.brandList}/>,
       'order': <OrderPage orderList={this.state.orderList}/>,
       'view-recipe': <RecipeIndividual 
-                        recipeList={this.state.recipeList}
                         flavorList={this.state.flavorList}
                         brandList={this.state.brandList}
                         orderList={this.state.orderList}
-                        recipeID={this.state.modifier}
+                        recipe={currentRecipe}
                         />
     }
 
