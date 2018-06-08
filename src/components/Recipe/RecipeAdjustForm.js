@@ -1,44 +1,34 @@
 import React, { Component } from 'react'
 
 class RecipeAdjustForm extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      volume: 100,
-      vgRatio: 70,
-      nicPercent: 2,
-      nicStrength: 100,
-      nicRatio: 50
-    }
-
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(event) {
-    console.log(event.target.name)
-  }
 
   render() {
     return (
       <div>
         <label>Volume to mix (ml)
-          <input type="text" name="volume" value={this.state.volume} onChange={this.handleChange}/>
+          <input type="text" name="volume" value={this.props.volume} onChange={this.props.handleChange}/>
         </label>
         <label>VG to PG ratio (%)
-          <input type="text" name="vgRatio" value={this.state.vgRatio} onChange={this.handleChange}/>
+          <input type="text" name="vgRatio" value={this.props.vgRatio} onChange={this.props.handleChange}/>
         </label>
         <label>Nicotine (%)
-          <input type="text" name="nicPercent" value={this.state.nicPercent} onChange={this.handleChange}/>
+          <input type="text" name="nicPercent" value={this.props.nicPercent} onChange={this.props.handleChange}/>
         </label>
         <label>Nicotine solution strength (mg)
-          <input type="text" name="nicStrength" value={this.state.nicStrength} onChange={this.handleChange}/>
+          <input type="text" name="nicStrength" value={this.props.nicStrength} onChange={this.props.handleChange}/>
         </label>
-        <label>Nicotine solution VG to PG ratio (%)
-          <input type="text" name="nicRatio" value={this.state.nicRatio} onChange={this.handleChange}/>
+        <label>PG weight (mg)
+          <input type="text" name="pgWeight" value={this.props.pgWeight} onChange={this.props.handleChange}/>
         </label>
-
-        
+        <label>VG weight (mg)
+          <input type="text" name="vgWeight" value={this.props.vgWeight} onChange={this.props.handleChange}/>
+        </label>
+        <label>Pure nicotine weight (mg)
+          <input type="text" name="pureNicWeight" value={this.props.pureNicWeight} onChange={this.props.handleChange}/>
+        </label>
+        <label>Flavor weight (mg)
+          <input type="text" name="flavorWeight" value={this.props.flavorWeight} onChange={this.props.handleChange}/>
+        </label>
       </div>
     )
   }
