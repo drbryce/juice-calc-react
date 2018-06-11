@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import BrandListItem from './Brand/BrandListItem'
 
 class BrandPage extends Component {
   render() {
-    const mappedList = this.props.brandList.map((item) => <li key={item._id}>{item.shortname} : {item.longname}</li> )
+    const mappedList = this.props.brandList.map((item) => <li key={item._id}> 
+      <BrandListItem {...item} />
+      </li> )
     return (
       <div>
         <ul>
