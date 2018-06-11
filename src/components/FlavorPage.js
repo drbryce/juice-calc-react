@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FlavorListItem from './Flavor/FlavorListItem'
+import FlavorAddForm from './Flavor/FlavorAddForm'
 
 class FlavorPage extends Component {
   render() {
@@ -8,6 +9,7 @@ class FlavorPage extends Component {
     </li> )
     return (
       <div>
+        <FlavorAddForm brandList={this.props.brandList}/>
         <ul>
           {mappedList}
         </ul>

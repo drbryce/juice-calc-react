@@ -15,6 +15,7 @@ class BrandListItem extends Component {
       <div>
         <a onClick={this.handleClick} id={this.props._id}>
         {this.props.shortname} : {this.props.longname}</a>
+        <input type="button" value="remove" id={this.props._id}onClick={this.props.deleteBrand}/>
       </div>
     )
   }

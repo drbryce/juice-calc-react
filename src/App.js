@@ -14,6 +14,8 @@ class App extends Component {
     super(props)
 
     this.setActiveLink = this.setActiveLink.bind(this)
+    this.setBrands = this.setBrands.bind(this)
+    this.deleteBrand = this.deleteBrand.bind(this)
     this.setToken = this.setToken.bind(this)
     this.logOut = this.logOut.bind(this)
     this.loginCallBack = this.loginCallBack.bind(this)
@@ -44,6 +46,17 @@ class App extends Component {
     .then(() => { DBController.updateOrders(this.state.token)
     .then(response => { this.setState({orderList: response})})})
     }
+
+  setBrands() {
+    DBController.updateBrands(this.state.token).then(response => {
+      this.setState({brandList: response})
+    })
+  }
+
+  deleteBrand(event) {
+    DBController.deleteBrand(this.state.token, event.target.id)
+    this.setBrands()
+  }
 
   setToken(token) {
     this.setState({
@@ -92,8 +105,15 @@ class App extends Component {
     // We're logged in so return a page.
     const linkNames = {
       'recipe': <RecipePage recipeList={this.state.recipeList} setActiveLink={this.setActiveLink}/>,
-      'flavor': <FlavorPage flavorList={this.state.flavorList}/>,
-      'brand': <BrandPage brandList={this.state.brandList}/>,
+      'flavor': <FlavorPage flavorList={this.state.flavorList}
+                            brandList={this.state.brandList}
+                            />,
+      'brand': <BrandPage 
+        brandList={this.state.brandList} 
+        token={this.state.token} 
+        brandCallback={this.setBrands}
+        deleteBrand={this.deleteBrand}  
+      />,
       'order': <OrderPage orderList={this.state.orderList}/>,
       'view-recipe': <RecipeIndividual 
                         flavorList={this.state.flavorList}
