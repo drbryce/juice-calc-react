@@ -74,9 +74,20 @@ class RecipeIndividual extends Component {
         )
       })
 
-    const vg = <RecipeIngredient name="VG" percentage={5} type="other" />
-    const pg = <RecipeIngredient name="PG" percentage={5} type="other" />
-    const nic = <RecipeIngredient name="Nicotine" volume={this.nicSolutionVolume()} weight={this.nicSolutionWeight()} type="other" />
+    const vg = <RecipeIngredient name="VG" 
+      weight={((this.state.vgRatio / 100) * this.state.volume) * this.state.vgWeight}
+      volume={this.vgVolume()}
+      percentage={this.state.vgRatio} 
+      type="other" />
+    const pg = <RecipeIngredient name="PG" 
+      weight={this.pgCalcWeight()}
+      volume={this.pgVolume()}
+      percentage={100-this.state.vgRatio} 
+      type="other" />
+    const nic = <RecipeIngredient name="Nicotine" 
+      volume={this.nicSolutionVolume()} 
+      weight={this.nicSolutionWeight()} 
+      type="other" />
 
     return (
       <div>
