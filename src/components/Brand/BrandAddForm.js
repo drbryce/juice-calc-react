@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import DBController from '../../controllers/dbController'
+import { connect } from 'react-redux'
+import { addBrand } from '../../actions/apiActions'
 
 class BrandAddForm extends Component {
   constructor(props) {
@@ -29,15 +30,10 @@ class BrandAddForm extends Component {
         sname: this.state.longName,
         lname: this.state.shortName
       }
-      DBController.addBrand(this.props.token, message).then((response) => {
-        console.log(response)
-        this.setState({
-          shortName: '',
-          longName: ''
-        })
-        if (response.ok) {
-          this.props.brandCallback()
-        }
+      this.props.addBrand(this.props.token, message)
+      this.setState({
+        shortName: '',
+        longName: ''
       })
     }
   }
@@ -57,4 +53,8 @@ class BrandAddForm extends Component {
   }
 }
 
-export default BrandAddForm
+const mapStateToProps = state => ({
+  token: state.api.token
+})
+
+export default connect(mapStateToProps, {addBrand})(BrandAddForm)

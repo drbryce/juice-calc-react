@@ -19,7 +19,6 @@ class App extends Component {
     this.deleteBrand = this.deleteBrand.bind(this)
     this.setToken = this.setToken.bind(this)
     this.logOut = this.logOut.bind(this)
-    this.loginCallBack = this.loginCallBack.bind(this)
 
     this.state = {
       loggedIn: false,
@@ -34,19 +33,6 @@ class App extends Component {
   }
 
   APIurl = 'https://juice.pod.party/'
-
-  loginCallBack(user, pass) {
-    DBController.tryLogin(user, pass)
-    .then(response => { this.setToken(response.token) })
-    .then(() => { DBController.updateBrands(this.state.token)
-    .then(response => { this.setState({brandList: response})})})
-    .then(() => { DBController.updateFlavors(this.state.token)
-    .then(response => { this.setState({flavorList: response})})})
-    .then(() => { DBController.updateRecipes(this.state.token)
-    .then(response => { this.setState({recipeList: response})})})
-    .then(() => { DBController.updateOrders(this.state.token)
-    .then(response => { this.setState({orderList: response})})})
-    }
 
   setBrands() {
     DBController.updateBrands(this.state.token).then(response => {
@@ -94,10 +80,6 @@ class App extends Component {
     if (!this.props.loggedIn) return (
         <div className="App">
           <LoginPage 
-            handleToken={this.setToken}
-            APIurl={this.APIurl}
-            successFunc={this.updateBrands}
-            // loginCallBack={this.loginCallBack}
           />
         </div>
     )

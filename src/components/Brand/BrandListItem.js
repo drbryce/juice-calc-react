@@ -1,24 +1,31 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { deleteBrand } from '../../actions/apiActions'
 
 class BrandListItem extends Component {
   constructor(props) {
     super(props)
 
-    this.handleClick = this.handleClick.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
-  handleClick(event) {
-    // this.props.setActiveLink('view-recipe', event.target.id)
+  handleDelete(event) {
+    event.preventDefault()
+    this.props.deleteBrand(this.props.token, event.target.id)
   }
   render() {
     return (
       <div>
         <a onClick={this.handleClick} id={this.props._id}>
         {this.props.shortname} : {this.props.longname}</a>
-        <input type="button" value="remove" id={this.props._id}onClick={this.props.deleteBrand}/>
+        <input type="button" value="remove" id={this.props._id}onClick={this.handleDelete}/>
       </div>
     )
   }
 }
 
-export default BrandListItem
+const mapStateToProps = state => ({
+  // local state var : redux store var
+  token: state.api.token
+})
+export default connect(mapStateToProps, {deleteBrand})(BrandListItem)

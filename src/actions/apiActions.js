@@ -98,6 +98,92 @@ export const fetchOrders = (token) => dispatch => {
     })
 }
 
+export const addBrand = (token, body) => dispatch => {
+  fetch(APIurl + 'brand/add', {
+    body: JSON.stringify(body),
+    headers: {
+      'user-agent': 'React Juice Calculator',
+      'content-type': 'application/json',
+      'token': token
+    },
+    method: 'POST',
+  })
+    .then(() => {
+      dispatch(fetchBrands(token))
+    })
+}
+
+export const addFlavor = (token, body) => dispatch => {
+  fetch(APIurl + 'flavor/add', {
+    body: JSON.stringify(body),
+    headers: {
+      'user-agent': 'React Juice Calculator',
+      'content-type': 'application/json',
+      'token': token
+    },
+    method: 'POST',
+  })
+    .then(() => {
+      dispatch(fetchFlavors(token))
+    })
+}
+
+export const addRecipe = (token, body) => dispatch => {
+  fetch(APIurl + 'recipe/add', {
+    body: JSON.stringify(body),
+    headers: {
+      'user-agent': 'React Juice Calculator',
+      'content-type': 'application/json',
+      'token': token
+    },
+    method: 'POST',
+  })
+    .then(() => {
+      dispatch(fetchRecipes(token))
+    })
+}
+
+export const deleteBrand = (token, itemID) => dispatch => {
+  fetch(APIurl + 'brand/delete/' + itemID, {
+    headers: {
+      'user-agent': 'React Juice Calculator',
+      'content-type': 'application/json',
+      'token': token
+    },
+    method: 'DELETE',
+  })
+    .then(() => {
+      dispatch(fetchBrands(token))
+    })
+}
+
+export const deleteFlavor = (token, itemID) => dispatch => {
+  fetch(APIurl + 'flavor/delete/' + itemID, {
+    headers: {
+      'user-agent': 'React Juice Calculator',
+      'content-type': 'application/json',
+      'token': token
+    },
+    method: 'DELETE',
+  })
+    .then(() => {
+      dispatch(fetchFlavors(token))
+    })
+}
+
+export const deleteRecipe = (token, itemID) => dispatch => {
+  fetch(APIurl + 'recipe/delete/' + itemID, {
+    headers: {
+      'user-agent': 'React Juice Calculator',
+      'content-type': 'application/json',
+      'token': token
+    },
+    method: 'DELETE',
+  })
+    .then(() => {
+      dispatch(fetchRecipes(token))
+    })
+}
 
 
 export const setToken = (token) => dispatch => {

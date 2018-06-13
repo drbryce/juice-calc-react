@@ -67,4 +67,4 @@ const mapStateToProps = state => ({
   token: state.api.token
 })
 
-export default connect(null, {setToken, fetchBrands, fetchFlavors, fetchRecipes, fetchOrders}) (LoginPage)
+export default connect(mapStateToProps, {setToken, fetchBrands, fetchFlavors, fetchRecipes, fetchOrders}) (LoginPage)

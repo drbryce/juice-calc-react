@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addFlavor } from '../../actions/apiActions'
 
 class FlavorAddForm extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      brandName: '',
+      brandID: '',
       flavorName: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
@@ -20,28 +23,45 @@ class FlavorAddForm extends Component {
     })
   }
 
+  handleSubmit(event) {
+    event.preventDefault()
+    const message = {
+      flavorname: this.state.flavorName,
+      brand: this.state.brandID
+    }
+    this.props.addFlavor(this.props.token, message)
+  }
+
   render() {
 
-    const brands = this.props.brandList.map((brand) => {
-      return (
-        <option key={brand._id} value={brand._id} onChange={this.handleChange}>{brand.shortname} : {brand.longname}</option>
-      )
-    })
+    const brands = (
+      this.props.brandList.map((brand) => {
+        return (
+          <option key={brand._id} value={brand._id} onChange={this.handleChange}>{brand.shortname} : {brand.longname}</option>
+        )
+      })
+    )
 
     return (
       <div>
         <label>Brand name:
-          <select name="brandName" value={this.state.shortName} onChange={this.handleChange}>
+          <select name="brandID" value={this.state.shortName} onChange={this.handleChange}>
+            <option value="" disabled selected hidden>Please Choose...</option>
             {brands}
           </select>
         </label>
         <label>Flavor name:
           <input type="text" name="flavorName" value={this.state.longName} onChange={this.handleChange}/>
         </label>
-        <input type="button" value="add" />
+        <input type="button" value="add" onClick={this.handleSubmit} />
       </div>
     )
   }
 }
 
-export default FlavorAddForm
+const mapStateToProps = state => ({
+  token: state.api.token,
+  brandList: state.api.brandList
+})
+
+export default connect(mapStateToProps, {addFlavor})(FlavorAddForm)
