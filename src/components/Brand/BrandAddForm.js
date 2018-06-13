@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DBController from '../../dbController'
+import DBController from '../../controllers/dbController'
 
 class BrandAddForm extends Component {
   constructor(props) {
@@ -44,15 +44,15 @@ class BrandAddForm extends Component {
 
   render() {
     return (
-      <div>
-        <label>Short name:
-          <input type="text" name="shortName" value={this.state.shortName} onChange={this.handleChange}/>
-        </label>
-        <label>Short name:
-          <input type="text" name="longName" value={this.state.longName} onChange={this.handleChange}/>
-        </label>
-        <input type="button" value="submit" onClick={this.handleSubmit}/>
-      </div>
+          <div>
+            <label>Short name:
+              <input type="text" name="shortName" value={this.state.shortName} onChange={this.handleChange}/>
+            </label>
+            <label>Short name:
+              <input type="text" name="longName" value={this.state.longName} onChange={this.handleChange}/>
+            </label>
+            <input type="button" value="submit" onClick={this.handleSubmit}/>
+          </div>
     )
   }
 }

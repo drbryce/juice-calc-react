@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { setToken, fetchBrands, fetchFlavors, fetchOrders, fetchRecipes } from '../actions/apiActions'
+import DBController from '../controllers/dbController'
+
 
 class LoginPage extends Component {
   constructor(props) {
@@ -27,7 +31,14 @@ class LoginPage extends Component {
 
   handleSubmit(event) {
     if (this.state.username && this.state.password) {
-        this.props.loginCallBack(this.state.username, this.state.password)
+        DBController.tryLogin(this.state.username, this.state.password)
+        .then(response => { 
+          this.props.setToken(response.token)
+          this.props.fetchBrands(response.token)
+          this.props.fetchFlavors(response.token)
+          this.props.fetchRecipes(response.token)
+          this.props.fetchOrders(response.token)
+        })
     }
     event.preventDefault()
   }
@@ -51,4 +62,9 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage
+const mapStateToProps = state => ({
+  // local state var : redux store var
+  token: state.api.token
+})
+
+export default connect(null, {setToken, fetchBrands, fetchFlavors, fetchRecipes, fetchOrders}) (LoginPage)

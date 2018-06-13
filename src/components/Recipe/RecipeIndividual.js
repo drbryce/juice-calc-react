@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import RecipeIngredient from './RecipeIngredient'
 import RecipeAdjustForm from './RecipeAdjustForm'
+import { connect } from 'react-redux'
 
 class RecipeIndividual extends Component {
   constructor(props) {
@@ -102,4 +103,12 @@ class RecipeIndividual extends Component {
   }
 }
 
-export default RecipeIndividual
+const mapStateToProps = state => ({
+  // local state var : redux store var
+  brandList: state.api.brandList,
+  flavorList: state.api.flavorList,
+  recipeList: state.api.recipeList,
+  orderList: state.api.orderList
+})
+
+export default connect(mapStateToProps)(RecipeIndividual)

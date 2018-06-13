@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class RecipeListItem extends Component {
   constructor(props) {
@@ -20,4 +21,9 @@ class RecipeListItem extends Component {
   }
 }
 
-export default RecipeListItem
+const mapStateToProps = state => ({
+  // local state var : redux store var
+  recipeList: state.api.recipeList,
+})
+
+export default connect (mapStateToProps)(RecipeListItem)

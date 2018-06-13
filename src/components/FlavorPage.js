@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import FlavorListItem from './Flavor/FlavorListItem'
 import FlavorAddForm from './Flavor/FlavorAddForm'
+import { connect } from 'react-redux'
+import { fetchFlavors } from '../actions/apiActions'
 
 class FlavorPage extends Component {
   render() {
@@ -18,4 +20,11 @@ class FlavorPage extends Component {
   }
 }
 
-export default FlavorPage
+const mapStateToProps = state => ({
+  // local state var : redux store var
+  flavorList: state.api.flavorList,
+  brandList: state.api.brandList,
+  token: state.api.token
+})
+
+export default connect(mapStateToProps, {fetchFlavors})(FlavorPage)

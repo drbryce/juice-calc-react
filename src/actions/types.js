@@ -1,0 +1,5 @@
+export const FETCH_BRANDS = 'FETCH_BRANDS'
+export const FETCH_FLAVORS = 'FETCH_FLAVORS'
+export const FETCH_RECIPES = 'FETCH_RECIPES'
+export const FETCH_ORDERS = 'FETCH_ORDERS'
+export const SET_TOKEN = 'SET_TOKEN'

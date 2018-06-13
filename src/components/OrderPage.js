@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import OrderIndividual from './Order/OrderIndividual'
+import { connect } from 'react-redux'
 
 class OrderPage extends Component {
   render() {
@@ -14,4 +15,8 @@ class OrderPage extends Component {
   }
 }
 
-export default OrderPage
+const mapStateToProps = state => ({
+  // local state var : redux store var
+  orderList: state.api.orderList
+})
+export default connect(mapStateToProps, {})(OrderPage)

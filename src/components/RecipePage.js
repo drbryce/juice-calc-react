@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RecipeListItem from './Recipe/RecipeListItem'
+import { connect } from 'react-redux'
 
 class RecipePage extends Component {
 
@@ -19,5 +20,8 @@ class RecipePage extends Component {
     )
   }
 }
-
-export default RecipePage
+const mapStateToProps = state => ({
+  // local state var : redux store var
+  recipeList: state.api.recipeList,
+})
+export default connect(mapStateToProps)(RecipePage)
