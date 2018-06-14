@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RecipeListItem from './Recipe/RecipeListItem'
+import RecipeAddForm from './Recipe/RecipeAddForm'
 import { connect } from 'react-redux'
 
 class RecipePage extends Component {
@@ -13,6 +14,7 @@ class RecipePage extends Component {
     </li> )
     return (
       <div>
+        <RecipeAddForm />
         <ul>
           {mappedList}
         </ul>
