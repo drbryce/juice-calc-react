@@ -30,9 +30,25 @@ class RecipeListItem extends Component {
       }
     )
 
+    let lastMixed = 'Never'
+    if (this.props.item.lastMixed) {
+      let date = new Date(this.props.item.lastMixed)
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let dt = date.getDate();
+
+      if (dt < 10) {
+        dt = '0' + dt;
+      }
+      if (month < 10) {
+        month = '0' + month;
+      }
+      lastMixed = year + '-' + month + '-' + dt
+    }
+
     return (
       <div>
-        {this.props.item.name}
+        {this.props.item.name} : Last mixed: {lastMixed} 
         <input type="button" name="viewRecipe" value="view" id={this.props.item._id} onClick={this.handleClick}/>
         <input type="button" name="removeRecipe" value="remove" onClick={this.handleDelete}/>
         {missing}

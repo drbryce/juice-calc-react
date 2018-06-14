@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import RecipeIngredient from './RecipeIngredient'
 import RecipeAdjustForm from './RecipeAdjustForm'
 import { connect } from 'react-redux'
+import { setMixDate } from '../../actions/apiActions'
 
 class RecipeIndividual extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class RecipeIndividual extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleMix = this.handleMix.bind(this)
   }
 
   handleChange(event) {
@@ -30,6 +32,10 @@ class RecipeIndividual extends Component {
       [name]: value
     })
 
+  }
+
+  handleMix() {
+    this.props.setMixDate(this.props.token, this.props.recipe._id)
   }
 
   // Calculations 
@@ -76,6 +82,22 @@ class RecipeIndividual extends Component {
         )
       })
 
+    let mixed = 'Never'
+    if (this.props.recipe.lastMixed) {
+      let date = new Date(this.props.recipe.lastMixed)
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let dt = date.getDate();
+
+      if (dt < 10) {
+        dt = '0' + dt;
+      }
+      if (month < 10) {
+        month = '0' + month;
+      }
+      mixed = year + '-' + month + '-' + dt
+    }
+
     const vg = <RecipeIngredient name="VG" 
       weight={((this.state.vgRatio / 100) * this.state.volume) * this.state.vgWeight}
       volume={this.vgVolume()}
@@ -98,6 +120,8 @@ class RecipeIndividual extends Component {
         {vg}
         {pg}
         {nic}
+        <p>Last mixed: {mixed}</p>
+        <input type="button" value="mixed" id={this.props.recipe._id} onClick={this.handleMix}/>
         <RecipeAdjustForm {...this.state} handleChange={this.handleChange}/>
       </div>
     )
@@ -109,7 +133,8 @@ const mapStateToProps = state => ({
   brandList: state.api.brandList,
   flavorList: state.api.flavorList,
   recipeList: state.api.recipeList,
-  orderList: state.api.orderList
+  orderList: state.api.orderList,
+  token: state.api.token
 })
 
-export default connect(mapStateToProps)(RecipeIndividual)
+export default connect(mapStateToProps, {setMixDate})(RecipeIndividual)

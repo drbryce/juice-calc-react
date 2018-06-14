@@ -213,6 +213,21 @@ export const unsetOrderFlavor = (token, itemID) => dispatch => {
     })
 }
 
+export const setMixDate = (token, itemID) => dispatch => {
+  fetch(APIurl + 'recipe/mixed/' + itemID, {
+    headers: {
+      'user-agent': 'React Juice Calculator',
+      'content-type': 'application/json',
+      'token': token
+    },
+    method: 'POST',
+  })
+    .then(() => {
+      dispatch(fetchOrders(token))
+    })
+}
+
+
 export const setToken = (token) => dispatch => {
   dispatch({
     type: SET_TOKEN,
