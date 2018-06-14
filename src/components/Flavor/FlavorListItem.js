@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deleteFlavor } from '../../actions/apiActions'
+import { deleteFlavor, setOrderFlavor } from '../../actions/apiActions'
 
 class FlavorListItem extends Component {
   constructor(props) {
@@ -8,6 +8,7 @@ class FlavorListItem extends Component {
 
     this.handleClick = this.handleClick.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleReorder = this.handleReorder.bind(this)
   }
 
   handleClick(event) {
@@ -17,7 +18,11 @@ class FlavorListItem extends Component {
   handleDelete(event) {
     event.preventDefault()
     this.props.deleteFlavor(this.props.token, event.target.id)
+  }
 
+  handleReorder(event) {
+    event.preventDefault()
+    this.props.setOrderFlavor(this.props.token, event.target.id)
   }
 
   render() {
@@ -31,6 +36,7 @@ class FlavorListItem extends Component {
     return (
       <div onClick={this.handleClick} id={this.props._id}>
         {this.props.brand.shortname} : {this.props.name} {reorder()}
+        <input type="button" value="reorder" id={this.props._id} onClick={this.handleReorder} />
         <input type="button" value="delete" id={this.props._id} onClick={this.handleDelete}/>
       </div>
     )
@@ -42,4 +48,4 @@ const mapStateToProps = state => ({
   token: state.api.token
 })
 
-export default connect(mapStateToProps, {deleteFlavor})(FlavorListItem)
+export default connect(mapStateToProps, {deleteFlavor, setOrderFlavor})(FlavorListItem)

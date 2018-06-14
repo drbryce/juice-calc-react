@@ -185,6 +185,33 @@ export const deleteRecipe = (token, itemID) => dispatch => {
     })
 }
 
+export const setOrderFlavor = (token, itemID) => dispatch => {
+  fetch(APIurl + 'flavor/order/flag/' + itemID, {
+    headers: {
+      'user-agent': 'React Juice Calculator',
+      'content-type': 'application/json',
+      'token': token
+    },
+    method: 'POST',
+  })
+    .then(() => {
+      dispatch(fetchOrders(token))
+    })
+}
+
+export const unsetOrderFlavor = (token, itemID) => dispatch => {
+  fetch(APIurl + 'flavor/order/unflag/' + itemID, {
+    headers: {
+      'user-agent': 'React Juice Calculator',
+      'content-type': 'application/json',
+      'token': token
+    },
+    method: 'POST',
+  })
+    .then(() => {
+      dispatch(fetchOrders(token))
+    })
+}
 
 export const setToken = (token) => dispatch => {
   dispatch({

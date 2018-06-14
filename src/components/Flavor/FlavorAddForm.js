@@ -46,7 +46,7 @@ class FlavorAddForm extends Component {
       <div>
         <label>Brand name:
           <select name="brandID" value={this.state.shortName} onChange={this.handleChange}>
-            <option value="" disabled selected hidden>Please Choose...</option>
+            <option value="" disabled hidden>Please Choose...</option>
             {brands}
           </select>
         </label>
