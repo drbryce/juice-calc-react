@@ -18,14 +18,27 @@ class RecipeIngredient extends Component {
   render() {
     let reorder
     if(this.props.type === 'flavor') {
-      reorder = <input type="button" value="reorder" id={this.props.id} onClick={this.handleReorder} />
+      reorder = <input type="button" value="reorder" className="btn btn-warning btn-sm" id={this.props.id} onClick={this.handleReorder} />
     } else {
       reorder = null
     }
     return (
-      <div>
-        {this.props.name} - {this.props.percentage}% - Volume: {this.props.volume}ml Weight: {this.props.weight}g
-        {reorder}
+      <div className="row">
+        <div className="col-4">
+          {this.props.name}
+        </div>
+        <div className="col">
+          {this.props.percentage}%
+        </div>
+        <div className="col">
+          Volume: {this.props.volume}ml
+        </div>
+        <div className="col">
+         Weight: {this.props.weight}g
+        </div>
+        <div className="col">
+          {reorder}
+        </div>
       </div>
     )
   }

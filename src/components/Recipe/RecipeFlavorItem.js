@@ -14,10 +14,17 @@ class RecipeFlavorItem extends Component {
 
   render() {
     const flavor = this.props.flavorList.find(flavor => flavor._id === this.props.flavor)
-    const removeBtn = ( <input type="button" name="removeBtn" value="remove" onClick={this.handleClick} /> )
+    const removeBtn = ( <input type="button" className="btn btn-warning" name="removeBtn" value="remove" onClick={this.handleClick} /> )
     return (
-      <div>
-        {flavor.brand.shortname} : {flavor.name} - {this.props.percentage}% {removeBtn}
+      <div className="row">
+        <div className="col" />
+        <div className="col-5">
+          {flavor.brand.shortname} : {flavor.name} - {this.props.percentage}%
+        </div>
+        <div className="col-1">
+          {removeBtn}
+        </div>
+        <div className="col" />
       </div>
     )
   }

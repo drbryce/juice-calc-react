@@ -85,29 +85,30 @@ class RecipeAddForm extends Component {
     let totalFlavPercentage = 0
     this.state.flavArray.forEach(item => totalFlavPercentage += Number(item.percentage))
     return (
-      <div>
-        <label>Recipe name
-          <input type="text" name="recipeName" value={this.state.recipeName} onChange={this.handleChange} />
-        </label>
-        <input type="button" name="addRecipe" value="Add Recipe" onClick={this.handleSubmit}/>
-        <br />
-        <label>Flavor
-          <select name="selectedFlavor" value={this.state.selectedFlavor} onChange={this.handleChange}>
+      <form>
+        <div className="form-group row">
+          <label htmlFor="recipeName" className="col-2">Recipe name</label>
+          <input type="text" className="form-control col" name="recipeName" value={this.state.recipeName} onChange={this.handleChange} />
+          <button name="addRecipe" className="btn btn-primary col-2" onClick={this.handleSubmit}>Add Recipe</button>
+        </div>
+        <div className="form-group row">
+          <label className="col-2">Flavor</label>
+          <select name="selectedFlavor" className="form-control col-4" value={this.state.selectedFlavor} onChange={this.handleChange}>
             <option value="" disabled hidden>Please Choose...</option>
             {flavors}
           </select>
-        </label>
-        <label>Percentage
-          <input type="text" name="percentage" value={this.state.percentage} onChange={this.handleChange}/>
-        </label>
-        <input type="button" name="addFlavor" value="Add Flavor" onClick={this.handleSubmit}/>
-        <br />
-        {addedFlavors}
-        <label>Notes 
-          <textarea name="notes" value={this.state.notes} onChange={this.handleChange} />
-        </label>
-        <p>Total flavor percentage: {totalFlavPercentage}%</p>       
-      </div>
+          <label className="col-2" htmlFor="percentage">Percentage</label>
+          <input type="text" className="form-control col-2" name="percentage" value={this.state.percentage} onChange={this.handleChange}/>
+          <button className="btn btn-primary col-2" name="addFlavor" onClick={this.handleSubmit}>Add Flavor</button>
+        </div>
+          {addedFlavors}
+        <div className="form-group row">
+          <label>Notes 
+            <textarea name="notes" className="form-control" value={this.state.notes} onChange={this.handleChange} />
+          </label>
+          <p>Total flavor percentage: {totalFlavPercentage}%</p>       
+        </div>
+      </form>
     )
   }
 }

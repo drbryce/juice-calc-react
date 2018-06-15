@@ -110,7 +110,8 @@ class RecipeIndividual extends Component {
       type="other" />
     const nic = <RecipeIngredient name="Nicotine" 
       volume={this.nicSolutionVolume()} 
-      weight={this.nicSolutionWeight()} 
+      weight={this.nicSolutionWeight()}
+      percentage={this.state.nicPercent}
       type="other" />
 
     return (

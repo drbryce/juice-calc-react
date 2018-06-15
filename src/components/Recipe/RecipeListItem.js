@@ -25,7 +25,7 @@ class RecipeListItem extends Component {
     this.props.item.flavors.forEach(
       flavor => {
         this.props.orderList.forEach(order => {
-          if (order._id === flavor.flavor._id) missing = (<span>missing flavors</span>) 
+          if (order._id === flavor.flavor._id) missing = (<span className="badge badge-warning">missing flavors</span>) 
         })
       }
     )
@@ -47,11 +47,19 @@ class RecipeListItem extends Component {
     }
 
     return (
-      <div>
-        {this.props.item.name} : Last mixed: {lastMixed} 
-        <input type="button" name="viewRecipe" value="view" id={this.props.item._id} onClick={this.handleClick}/>
-        <input type="button" name="removeRecipe" value="remove" onClick={this.handleDelete}/>
-        {missing}
+      <div className="row">
+        <div className="col-6">
+          {this.props.item.name} {missing}
+        </div>
+        <div className="col">
+          Last mixed: {lastMixed}
+        </div>
+        <div className="col-3">
+          <div className="btn-toolbar">
+            <button type="button" className="btn btn-primary btn-sm" name="viewRecipe" value="view" id={this.props.item._id} onClick={this.handleClick}>view</button>
+            <button type="button" className="btn btn-danger btn-sm" name="removeRecipe" value="remove" onClick={this.handleDelete}>delete</button>
+          </div>
+        </div>
       </div>
     )
   }

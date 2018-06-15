@@ -78,9 +78,12 @@ class App extends Component {
 
     // Not logged in so return login page.
     if (!this.props.loggedIn) return (
-        <div className="App">
-          <LoginPage 
-          />
+        <div className="App container">
+          <div className="row">
+            <div className="col">
+              <LoginPage />
+            </div>
+          </div>
         </div>
     )
 
@@ -101,9 +104,17 @@ class App extends Component {
 
     const buildLink = (name) => {
       return (
-          <div className="App">
-            {navBar} 
-            {linkNames[name]}
+          <div className="App container">
+            <div className="row">
+              <div className="col">
+                {navBar} 
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                {linkNames[name]}
+              </div>
+            </div>
           </div>
       )
     }

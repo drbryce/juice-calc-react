@@ -14,11 +14,19 @@ class RecipePage extends Component {
     </li> )
     return (
       <div>
-        <RecipeAddForm />
-        <ul>
-          {mappedList}
-        </ul>
+        <div className="row">
+          <div className="col">
+            <RecipeAddForm />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <ul className="list-unstyled">
+              {mappedList}
+            </ul>
+        </div>
       </div>
+    </div>
     )
   }
 }
