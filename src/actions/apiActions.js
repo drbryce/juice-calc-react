@@ -2,30 +2,6 @@ import { FETCH_BRANDS, FETCH_FLAVORS, FETCH_RECIPES, FETCH_ORDERS, SET_TOKEN } f
 
 let APIurl = 'https://juice.pod.party/'
 
-//should be done like this
-/* let getRequest = (url, token) => {
-  fetch(url, {
-    headers: {
-      'user-agent': 'React Juice Calculator',
-      'content-type': 'application/json',
-      'token': token
-    },
-    method: 'GET',
-  })
-    .then(response => response.json())
-}
-
-export const fetchBrands = (token) => dispatch => {
-  getRequest(APIurl + 'brand/listjson', token)
-    .then(brands => {
-      dispatch({
-        type: FETCH_BRANDS,
-        payload: brands
-      })
-    })
-}
-*/
-
 export const fetchBrands = (token) => dispatch => {
   fetch(APIurl + 'brand/listjson', {
     headers: {
@@ -223,7 +199,7 @@ export const setMixDate = (token, itemID) => dispatch => {
     method: 'POST',
   })
     .then(() => {
-      dispatch(fetchOrders(token))
+      dispatch(fetchRecipes(token))
     })
 }
 
