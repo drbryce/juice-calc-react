@@ -123,7 +123,7 @@ class RecipeIndividual extends Component {
         {pg}
         {nic}
         <p>Last mixed: {mixed}</p>
-        <input type="button" value="mixed" id={this.props.recipe._id} onClick={this.handleMix}/>
+        <input type="button" value="mixed" className="btn btn-primary" id={this.props.recipe._id} onClick={this.handleMix}/>
         <RecipeAdjustForm {...this.state} handleChange={this.handleChange}/>
       </div>
     )

@@ -6,13 +6,13 @@ import { fetchFlavors } from '../actions/apiActions'
 
 class FlavorPage extends Component {
   render() {
-    const mappedList = this.props.flavorList.map((item) => <li key={item._id}>
+    const mappedList = this.props.flavorList.map((item) => <li key={item._id} className="list-group-item">
       <FlavorListItem {...item} />
     </li> )
     return (
       <div>
         <FlavorAddForm />
-        <ul>
+        <ul className="list-group">
           {mappedList}
         </ul>
       </div>

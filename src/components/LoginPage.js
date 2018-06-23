@@ -47,15 +47,15 @@ class LoginPage extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit} method="post">
-          <label>
-            Username:
-            <input type="text" name="username" onChange={this.handleChange} />
-          </label><br />
-          <label>
-            Password:
-            <input type="password" name="password" onChange={this.handleChange} />
-          </label><br />
-          <input type="submit" value="Submit" />
+          <div className="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" className="form-control" onChange={this.handleChange} />
+            <br />
+            <label for="password">Password:</label>
+            <input type="password" name="password" className="form-control" onChange={this.handleChange} />
+            <br />
+            <input type="submit" value="Submit" className="btn btn-primary" />
+          </div>
         </form>
       </div>
     )

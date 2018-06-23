@@ -6,13 +6,8 @@ class FlavorListItem extends Component {
   constructor(props) {
     super(props)
 
-    this.handleClick = this.handleClick.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.handleReorder = this.handleReorder.bind(this)
-  }
-
-  handleClick(event) {
-    // this.props.setActiveLink('view-recipe', event.target.id)
   }
 
   handleDelete(event) {
@@ -34,10 +29,14 @@ class FlavorListItem extends Component {
       }
     }
     return (
-      <div onClick={this.handleClick} id={this.props._id}>
-        {this.props.brand.shortname} : {this.props.name} {reorder()}
-        <input type="button" value="reorder" id={this.props._id} onClick={this.handleReorder} />
-        <input type="button" value="delete" id={this.props._id} onClick={this.handleDelete}/>
+      <div id={this.props._id} className="row">
+        <div className="col-9">
+          {this.props.brand.shortname} : {this.props.name} {reorder()}
+        </div>
+        <div className="col">
+          <input type="button" value="reorder" className="btn btn-warning" id={this.props._id} onClick={this.handleReorder} />
+          <input type="button" value="delete" className="btn btn-danger" id={this.props._id} onClick={this.handleDelete}/>
+        </div>
       </div>
     )
   }

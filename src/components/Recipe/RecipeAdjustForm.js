@@ -5,30 +5,48 @@ class RecipeAdjustForm extends Component {
   render() {
     return (
       <div>
-        <label>Volume to mix (ml)
-          <input type="text" name="volume" value={this.props.volume} onChange={this.props.handleChange}/>
-        </label>
-        <label>VG to PG ratio (%)
-          <input type="text" name="vgRatio" value={this.props.vgRatio} onChange={this.props.handleChange}/>
-        </label>
-        <label>Nicotine (%)
-          <input type="text" name="nicPercent" value={this.props.nicPercent} onChange={this.props.handleChange}/>
-        </label>
-        <label>Nicotine solution strength (mg)
-          <input type="text" name="nicStrength" value={this.props.nicStrength} onChange={this.props.handleChange}/>
-        </label>
-        <label>PG weight (mg)
-          <input type="text" name="pgWeight" value={this.props.pgWeight} onChange={this.props.handleChange}/>
-        </label>
-        <label>VG weight (mg)
-          <input type="text" name="vgWeight" value={this.props.vgWeight} onChange={this.props.handleChange}/>
-        </label>
-        <label>Pure nicotine weight (mg)
-          <input type="text" name="pureNicWeight" value={this.props.pureNicWeight} onChange={this.props.handleChange}/>
-        </label>
-        <label>Flavor weight (mg)
-          <input type="text" name="flavorWeight" value={this.props.flavorWeight} onChange={this.props.handleChange}/>
-        </label>
+        <form>
+          <div className="form-row">
+            <label for="volume" className="col-3 col-form-label">Volume to mix (ml)</label>
+            <div className="col-3">
+              <input type="text" name="volume" className="form-control" value={this.props.volume} onChange={this.props.handleChange}/>
+            </div>
+            <label for="vgRatio" className="col-3 col-form-label">VG to PG ratio (%)</label>
+            <div className="col-3">
+              <input type="text" name="vgRatio" className="form-control" value={this.props.vgRatio} onChange={this.props.handleChange}/>
+            </div>
+          </div>
+          <div className="form-row">
+            <label for="nicPercent" className="col-3 col-form-label">Nicotine (%)</label>
+            <div className="col-3">
+              <input type="text" name="nicPercent" className="form-control" value={this.props.nicPercent} onChange={this.props.handleChange}/>
+            </div>
+            <label for="nicStrength" className="col-3 col-form-label">Nicotine solution strength (mg)</label>
+            <div className="col-3">
+              <input type="text" name="nicStrength" className="form-control" value={this.props.nicStrength} onChange={this.props.handleChange}/>
+            </div>
+          </div>
+          <div className="form-row">
+            <label for="pgWeight" className="col-3 col-form-label">PG weight (mg)</label>
+            <div className="col-3">
+              <input type="text" name="pgWeight" className="form-control" value={this.props.pgWeight} onChange={this.props.handleChange}/>
+            </div>
+            <label for="vgweight" className="col-3 col-form-label">VG weight (mg)</label>
+            <div className="col-3">
+              <input type="text" name="vgWeight" className="form-control" value={this.props.vgWeight} onChange={this.props.handleChange}/>
+            </div>
+          </div>
+          <div className="form-row">
+            <label for="pureNicWeight" className="col-3 col-form-label">Pure nicotine weight (mg)</label>
+            <div className="col-3">
+              <input type="text" name="pureNicWeight" className="form-control" value={this.props.pureNicWeight} onChange={this.props.handleChange}/>
+            </div>
+            <label for="flavorWeight" className="col-3 col-form-label">Flavor weight (mg)</label>
+            <div className="col-3">
+              <input type="text" name="flavorWeight" className="form-control" value={this.props.flavorWeight} onChange={this.props.handleChange}/>
+            </div>
+          </div>
+        </form>
       </div>
     )
   }
