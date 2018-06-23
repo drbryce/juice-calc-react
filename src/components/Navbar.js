@@ -18,7 +18,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <p className="navbar-brand" href="1">Navbar</p>
+        <p className="navbar-brand" href="1">Juice Calculator</p>
         <ul className="navbar-nav">
           <li className="nav-item">
             <a className="nav-link" name="recipe" onClick={this.handleClick}>Recipe</a>

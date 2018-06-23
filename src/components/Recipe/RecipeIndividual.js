@@ -25,7 +25,7 @@ class RecipeIndividual extends Component {
   }
 
   handleChange(event) {
-    const value = event.target.value
+    const value = parseFloat(event.target.value)
     const name = event.target.name
 
     this.setState({
@@ -56,15 +56,16 @@ class RecipeIndividual extends Component {
     return ((this.state.vgRatio / 100) * this.state.volume).toFixed(1)
   }
   pgVolume() {
-    var tempNumber = 0
-    this.props.recipe.flavors.forEach((flavor) => {
-      tempNumber += flavor.percentage
-    })
-    tempNumber += this.state.vgRatio
-    return (((100 - tempNumber) / 100) * this.state.volume).toFixed(1)
+    return ((this.pgCalcPercent() / 100) * this.state.volume).toFixed(1)
   }
   pgCalcWeight() {
-    return (this.pgVolume() * this.state.pgWeight).toFixed(1)
+    return (this.pgCalcPercent() * this.state.pgWeight).toFixed(1)
+  }
+
+  pgCalcPercent() {
+    let flavPercent = 0
+    this.props.recipe.flavors.forEach((flavor) => flavPercent += flavor.percentage)
+    return (100-(this.state.vgRatio + flavPercent))
   }
 
   render() {
@@ -106,7 +107,7 @@ class RecipeIndividual extends Component {
     const pg = <RecipeIngredient name="PG" 
       weight={this.pgCalcWeight()}
       volume={this.pgVolume()}
-      percentage={100-this.state.vgRatio} 
+      percentage={this.pgCalcPercent()} 
       type="other" />
     const nic = <RecipeIngredient name="Nicotine" 
       volume={this.nicSolutionVolume()} 
