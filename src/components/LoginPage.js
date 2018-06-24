@@ -44,14 +44,18 @@ class LoginPage extends Component {
   }
 
   render() {
+    let styleObj = {
+      height: 100,
+      width: 300
+    }
     return (
-      <div>
+      <div style={styleObj}>
         <form onSubmit={this.handleSubmit} method="post">
           <div className="form-group">
-            <label for="username">Username:</label>
+            <label htmlFor="username">Username:</label>
             <input type="text" name="username" className="form-control" onChange={this.handleChange} />
             <br />
-            <label for="password">Password:</label>
+            <label htmlFor="password">Password:</label>
             <input type="password" name="password" className="form-control" onChange={this.handleChange} />
             <br />
             <input type="submit" value="Submit" className="btn btn-primary" />

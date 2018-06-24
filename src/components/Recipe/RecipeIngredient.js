@@ -23,23 +23,23 @@ class RecipeIngredient extends Component {
       reorder = null
     }
     return (
-      <div className="row">
-        <div className="col-4">
+      <tr>
+        <td>
           {this.props.name}
-        </div>
-        <div className="col">
+        </td>
+        <td>
           {this.props.percentage}%
-        </div>
-        <div className="col">
-          Volume: {this.props.volume}ml
-        </div>
-        <div className="col">
-         Weight: {this.props.weight}g
-        </div>
-        <div className="col">
+        </td>
+        <td>
+          {this.props.volume} ml
+        </td>
+        <td>
+         {this.props.weight} g
+        </td>
+        <td>
           {reorder}
-        </div>
-      </div>
+        </td>
+      </tr>
     )
   }
 }

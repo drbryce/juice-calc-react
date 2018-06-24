@@ -15,10 +15,14 @@ class OrderIndividual extends Component {
   }
   render() {
     return (
-      <div>
-        {this.props.item.brand.shortname} : {this.props.item.name}
-        <input type="button" value="restock" id={this.props.item._id} onClick={this.handleRestock} />
-      </div>
+      <tr>
+        <td className="col align-middle">
+          {this.props.item.brand.shortname} : {this.props.item.name}
+        </td>
+        <td className="col-2">
+          <input type="button" className="btn btn-success" value="restock" id={this.props.item._id} onClick={this.handleRestock} />
+        </td>
+      </tr>
     )
   }
 }

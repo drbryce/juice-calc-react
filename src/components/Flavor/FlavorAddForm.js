@@ -46,16 +46,14 @@ class FlavorAddForm extends Component {
       <div>
         <form>
           <div className="form-row">
-            <label for="brandID" className="col-2">Brand name:</label>
             <div className="col-3">
               <select name="brandID" className="form-control" value={this.state.shortName} onChange={this.handleChange}>
                 <option value="" disabled hidden>Please Choose...</option>
                 {brands}
               </select>
             </div>
-            <label for="flavorName" className="col-2">Flavor name:</label>
             <div className="col-3">
-              <input type="text" name="flavorName" className="form-control" value={this.state.longName} onChange={this.handleChange}/>
+              <input type="text" name="flavorName" placeholder="Flavor name" className="form-control" value={this.state.longName} onChange={this.handleChange}/>
             </div>
             <div className="col-2">
               <input type="button" className="btn btn-primary" value="add" onClick={this.handleSubmit} />

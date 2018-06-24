@@ -6,12 +6,12 @@ import { connect } from 'react-redux'
 class RecipePage extends Component {
 
   render() {
-    const mappedList = this.props.recipeList.map((item) => <li key={item._id}>
-      <RecipeListItem 
+    const mappedRecipeList = this.props.recipeList.map((item) =>
+      <RecipeListItem
+        key={item._id} 
         item={item} 
         setActiveLink={this.props.setActiveLink}
-      />
-    </li> )
+      /> )
     return (
       <div>
         <div className="row">
@@ -21,9 +21,20 @@ class RecipePage extends Component {
         </div>
         <div className="row">
           <div className="col">
-            <ul className="list-unstyled">
-              {mappedList}
-            </ul>
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Missing</th>
+                  <th scope="col">Last Mixed</th>
+                  <th scope="col">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mappedRecipeList}
+              </tbody>
+            </table>
         </div>
       </div>
     </div>

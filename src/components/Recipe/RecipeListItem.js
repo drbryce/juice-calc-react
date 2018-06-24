@@ -12,6 +12,7 @@ class RecipeListItem extends Component {
 
   handleClick(event) {
     //alert(event.target.id)
+    event.preventDefault()
     this.props.setActiveLink('view-recipe', event.target.id)
   }
 
@@ -47,20 +48,22 @@ class RecipeListItem extends Component {
     }
 
     return (
-      <div className="row">
-        <div className="col-6">
-          {this.props.item.name} {missing}
-        </div>
-        <div className="col">
-          Last mixed: {lastMixed}
-        </div>
-        <div className="col-3">
-          <div className="btn-toolbar">
-            <button type="button" className="btn btn-primary btn-sm" name="viewRecipe" value="view" id={this.props.item._id} onClick={this.handleClick}>view</button>
+      <tr>
+        <td className="align-middle">
+        <a id={this.props.item._id} onClick={this.handleClick}>{this.props.item.name}</a>
+        </td>
+        <td className="align-middle">
+        </td>
+        <td className="align-middle">
+          {missing}
+        </td>
+        <td className="align-middle">
+          {lastMixed}
+        </td>
+        <td className="align-middle">
             <button type="button" className="btn btn-danger btn-sm" name="removeRecipe" value="remove" onClick={this.handleDelete}>delete</button>
-          </div>
-        </div>
-      </div>
+        </td>
+      </tr>
     )
   }
 }

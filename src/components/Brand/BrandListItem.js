@@ -15,11 +15,17 @@ class BrandListItem extends Component {
   }
   render() {
     return (
-      <div>
-        <a onClick={this.handleClick} id={this.props._id}>
-        {this.props.shortname} : {this.props.longname}</a>
-        <input type="button" value="remove" id={this.props._id}onClick={this.handleDelete}/>
-      </div>
+      <tr>
+          <td className="align-middle">
+            {this.props.shortname}
+          </td>
+          <td className="align-middle">
+            {this.props.longname}
+          </td>
+          <td>
+            <input type="button" className="btn btn-danger" value="remove" id={this.props._id}onClick={this.handleDelete}/>
+          </td>
+      </tr>
     )
   }
 }

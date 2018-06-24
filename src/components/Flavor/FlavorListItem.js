@@ -29,15 +29,20 @@ class FlavorListItem extends Component {
       }
     }
     return (
-      <div id={this.props._id} className="row">
-        <div className="col-9">
-          {this.props.brand.shortname} : {this.props.name} {reorder()}
-        </div>
-        <div className="col">
+      <tr id={this.props._id} className="d-flex">
+        <td className="align-middle col-1">
+          {this.props.brand.shortname}
+        </td>
+        <td className="align-middle col-7">
+          {this.props.name} {reorder()}
+        </td>
+        <td className="col">
           <input type="button" value="reorder" className="btn btn-warning" id={this.props._id} onClick={this.handleReorder} />
+        </td>
+        <td className="col">
           <input type="button" value="delete" className="btn btn-danger" id={this.props._id} onClick={this.handleDelete}/>
-        </div>
-      </div>
+        </td>
+      </tr>
     )
   }
 }

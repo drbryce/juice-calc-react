@@ -118,10 +118,23 @@ class RecipeIndividual extends Component {
     return (
       <div>
         <h1>{this.props.recipe.name}</h1>
-        {flavors}
-        {vg}
-        {pg}
-        {nic}
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">Ingredient</th>
+              <th scope="col">Percentage</th>
+              <th scope="col">Volume</th>
+              <th scope="col">Weight</th>
+              <th scope="col">Reorder</th>
+            </tr>
+          </thead>
+          <tbody>
+            {flavors}
+            {vg}
+            {pg}
+            {nic}
+          </tbody>
+        </table>
         <p>Last mixed: {mixed}</p>
         <input type="button" value="mixed" className="btn btn-primary" id={this.props.recipe._id} onClick={this.handleMix}/>
         <RecipeAdjustForm {...this.state} handleChange={this.handleChange}/>

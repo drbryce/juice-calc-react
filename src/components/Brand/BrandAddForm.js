@@ -40,15 +40,29 @@ class BrandAddForm extends Component {
 
   render() {
     return (
-          <div>
-            <label>Short name:
-              <input type="text" name="shortName" value={this.state.shortName} onChange={this.handleChange}/>
-            </label>
-            <label>Short name:
-              <input type="text" name="longName" value={this.state.longName} onChange={this.handleChange}/>
-            </label>
-            <input type="button" value="submit" onClick={this.handleSubmit}/>
+        <form>
+          <div className="form-row">
+            <div className="col form-group">
+              <input type="text" 
+                     name="shortName" 
+                     className="form-control"
+                     placeholder="Short name" 
+                     value={this.state.shortName} 
+                     onChange={this.handleChange}/>
+            </div>
+            <div className="col form-group">
+              <input type="text" 
+                     name="longName" 
+                     className="form-control"
+                     placeholder="Long name"
+                     value={this.state.longName} 
+                     onChange={this.handleChange}/>
+            </div>
+            <div className="col form-group">
+              <input type="button" className="btn btn-primary" value="Add" onClick={this.handleSubmit}/>
+            </div>
           </div>
+        </form>
     )
   }
 }

@@ -6,9 +6,8 @@ import { fetchBrands } from '../actions/apiActions'
 
 class BrandPage extends Component {
   render() {
-    const mappedList = this.props.brandList.map((item) => <li key={item._id}> 
-      <BrandListItem {...item} deleteBrand={this.props.deleteBrand}/>
-    </li> )
+    const mappedList = this.props.brandList.map((item) => 
+      <BrandListItem {...item} key={item._id} deleteBrand={this.props.deleteBrand}/> )
 
     return (
       <div>
@@ -16,10 +15,18 @@ class BrandPage extends Component {
           brandCallback={this.props.brandCallback}
           token={this.context.token}
         />
-
-        <ul>
-          {mappedList}
-        </ul>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Short Name</th>
+              <th scope="col">Long Name</th>
+              <th scope="col">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mappedList}
+          </tbody>
+        </table>
     </div>
     )
   }

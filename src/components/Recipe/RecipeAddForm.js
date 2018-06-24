@@ -103,10 +103,11 @@ class RecipeAddForm extends Component {
         </div>
           {addedFlavors}
         <div className="form-group row">
-          <label>Notes 
-            <textarea name="notes" className="form-control" value={this.state.notes} onChange={this.handleChange} />
-          </label>
-          <p>Total flavor percentage: {totalFlavPercentage}%</p>       
+          <label className="col-2" htmlFor="notes">Notes</label> 
+          <textarea name="notes" className="form-control col" value={this.state.notes} onChange={this.handleChange} />
+        </div>
+        <div className="form-group row">        
+          <p className="col">Total flavor percentage: {totalFlavPercentage}%</p>       
         </div>
       </form>
     )
