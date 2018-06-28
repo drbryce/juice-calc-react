@@ -171,6 +171,9 @@ export const setOrderFlavor = (token, itemID) => dispatch => {
     method: 'POST',
   })
     .then(() => {
+      dispatch(fetchFlavors(token))
+    })
+    .then(() => {
       dispatch(fetchOrders(token))
     })
 }

@@ -22,10 +22,10 @@ class FlavorListItem extends Component {
 
   render() {
     const reorder = () => { 
-      if (this.props.reorder) {
-        return (<span>: REORDER</span>)
+      if (!this.props.reorder) {
+        return (<input type="button" value="reorder" className="btn btn-warning" id={this.props._id} onClick={this.handleReorder} />)
       } else {
-        return null
+        return (<p>Missing</p>)
       }
     }
     return (
@@ -34,10 +34,10 @@ class FlavorListItem extends Component {
           {this.props.brand.shortname}
         </td>
         <td className="align-middle col-7">
-          {this.props.name} {reorder()}
+          {this.props.name}
         </td>
         <td className="col">
-          <input type="button" value="reorder" className="btn btn-warning" id={this.props._id} onClick={this.handleReorder} />
+          {reorder()}
         </td>
         <td className="col">
           <input type="button" value="delete" className="btn btn-danger" id={this.props._id} onClick={this.handleDelete}/>
