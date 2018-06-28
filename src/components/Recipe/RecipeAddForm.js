@@ -94,7 +94,7 @@ class RecipeAddForm extends Component {
             <input type="text" className="form-control" name="recipeName" value={this.state.recipeName} onChange={this.handleChange} />
           </div>
           <div className="col-2">
-            <button name="addRecipe" className="btn btn-primary" onClick={this.handleSubmit}>Add Recipe</button>
+            <button name="addRecipe" className="btn btn-success" onClick={this.handleSubmit}>Add Recipe</button>
           </div>
         </div>
         <div className="form-group row">
