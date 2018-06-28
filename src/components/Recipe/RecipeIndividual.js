@@ -25,7 +25,12 @@ class RecipeIndividual extends Component {
   }
 
   handleChange(event) {
-    const value = parseFloat(event.target.value)
+    let value = ''
+    if (isNaN(event.target.value)) {
+      value = event.target.value
+    } else {
+      value = parseFloat(event.target.value)
+    }
     const name = event.target.name
 
     this.setState({
