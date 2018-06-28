@@ -46,11 +46,13 @@ class LoginPage extends Component {
   render() {
     let styleObj = {
       height: 100,
-      width: 300
+      width: 330,
+      margin: 'auto',
+      padding: 15
     }
     return (
-      <div style={styleObj}>
-        <form onSubmit={this.handleSubmit} method="post">
+      <div>
+        <form onSubmit={this.handleSubmit} style={styleObj} method="post">
           <div className="form-group">
             <label htmlFor="username">Username:</label>
             <input type="text" name="username" className="form-control" onChange={this.handleChange} />
