@@ -87,27 +87,49 @@ class RecipeAddForm extends Component {
     return (
       <form>
         <div className="form-group row">
-          <label htmlFor="recipeName" className="col-2">Recipe name</label>
-          <input type="text" className="form-control col" name="recipeName" value={this.state.recipeName} onChange={this.handleChange} />
-          <button name="addRecipe" className="btn btn-primary col-2" onClick={this.handleSubmit}>Add Recipe</button>
+          <div className="col-2">
+            <label htmlFor="recipeName" >Recipe name</label>
+          </div>
+          <div className="col-3">
+            <input type="text" className="form-control" name="recipeName" value={this.state.recipeName} onChange={this.handleChange} />
+          </div>
+          <div className="col-2">
+            <button name="addRecipe" className="btn btn-primary" onClick={this.handleSubmit}>Add Recipe</button>
+          </div>
         </div>
         <div className="form-group row">
-          <label className="col-2">Flavor</label>
-          <select name="selectedFlavor" className="form-control col-4" value={this.state.selectedFlavor} onChange={this.handleChange}>
-            <option value="" disabled hidden>Please Choose...</option>
-            {flavors}
-          </select>
-          <label className="col-2" htmlFor="percentage">Percentage</label>
-          <input type="text" className="form-control col-2" name="percentage" value={this.state.percentage} onChange={this.handleChange}/>
-          <button className="btn btn-primary col-2" name="addFlavor" onClick={this.handleSubmit}>Add Flavor</button>
+          <div className="col-2">
+            <label>Flavor</label>
+          </div>
+          <div className="col-4">
+            <select name="selectedFlavor" className="form-control" value={this.state.selectedFlavor} onChange={this.handleChange}>
+              <option value="" disabled hidden>Please Choose...</option>
+              {flavors}
+            </select>
+          </div>
+          <div className="col-2">
+            <label htmlFor="percentage">Percentage</label>
+          </div>
+          <div className="col-2">
+            <input type="text" className="form-control" name="percentage" value={this.state.percentage} onChange={this.handleChange}/>
+          </div>
+          <div className="col-2">
+            <button className="btn btn-primary" name="addFlavor" onClick={this.handleSubmit}>Add Flavor</button>
+          </div>
         </div>
           {addedFlavors}
         <div className="form-group row">
-          <label className="col-2" htmlFor="notes">Notes</label> 
-          <textarea name="notes" className="form-control col" value={this.state.notes} onChange={this.handleChange} />
+          <div className="col-2">
+            <label htmlFor="notes">Notes</label>
+          </div>
+          <div className="col">
+            <textarea name="notes" className="form-control" value={this.state.notes} onChange={this.handleChange} />
+          </div>
         </div>
-        <div className="form-group row">        
-          <p className="col">Total flavor percentage: {totalFlavPercentage}%</p>       
+        <div className="form-group row">
+          <div className="col">
+            <p>Total flavor percentage: {totalFlavPercentage}%</p>
+          </div>
         </div>
       </form>
     )
