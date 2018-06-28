@@ -16,8 +16,9 @@ class Navbar extends Component {
   }
 
   render() {
+    let styleObj = { marginBottom: 15 }
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light" style={styleObj}>
         <p className="navbar-brand" href="1">Juice Calculator</p>
         <ul className="navbar-nav">
           <li className="nav-item">

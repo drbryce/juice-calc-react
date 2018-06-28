@@ -42,7 +42,7 @@ class BrandAddForm extends Component {
     return (
         <form>
           <div className="form-row">
-            <div className="col form-group">
+            <div className="col-3 form-group">
               <input type="text" 
                      name="shortName" 
                      className="form-control"
