@@ -81,7 +81,7 @@ class RecipeIndividual extends Component {
             name={brand + ' - ' + flavor.flavor.name}
             percentage={flavor.percentage}
             volume={((flavor.percentage / 100) * this.state.volume).toFixed(1)}
-            weight={(((flavor.percentage / 100) * this.state.volume) * this.state.flavorWeight).toFixed(1)}
+            weight={(((flavor.percentage / 100) * this.state.volume) * this.state.flavorWeight).toFixed(2)}
             type="flavor"
             id={flavor.flavor._id} 
           />
