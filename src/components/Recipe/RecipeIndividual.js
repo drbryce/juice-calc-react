@@ -120,6 +120,13 @@ class RecipeIndividual extends Component {
       percentage={this.state.nicPercent}
       type="other" />
 
+      let redditFlavors = ''
+      this.props.recipe.flavors.forEach((flavor) => {
+        redditFlavors += flavor.flavor.brand.shortname + ' | ' + flavor.flavor.name + ' | ' + flavor.percentage + '\n'
+      })
+      let redditRecipe = '**' + this.props.recipe.name + '**\n\n' + '| Co. | Flavor | % |\n---|---|----\n' + redditFlavors
+
+
     return (
       <div>
         <h1>{this.props.recipe.name}</h1>
@@ -143,6 +150,10 @@ class RecipeIndividual extends Component {
         <p>Last mixed: {mixed}</p>
         <input type="button" value="mixed" className="btn btn-primary" id={this.props.recipe._id} onClick={this.handleMix}/>
         <RecipeAdjustForm {...this.state} handleChange={this.handleChange}/>
+        <div className="form-group">
+          <label htmlFor="redditRecipe">Reddit formatted recipe</label>
+          <textarea value={redditRecipe} id="redditRecipe" className="form-control"/>
+        </div>
       </div>
     )
   }
