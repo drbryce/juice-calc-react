@@ -64,7 +64,7 @@ class RecipeIndividual extends Component {
     return ((this.pgCalcPercent() / 100) * this.state.volume).toFixed(1)
   }
   pgCalcWeight() {
-    return (this.pgCalcPercent() * this.state.pgWeight).toFixed(1)
+    return ((this.pgCalcPercent() / 100) * this.state.volume * this.state.pgWeight).toFixed(1)
   }
 
   pgCalcPercent() {
