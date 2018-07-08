@@ -32,7 +32,7 @@ class Navbar extends Component {
       badge = <span className="badge badge-primary">{this.props.brandList.length}</span>
     else
       badge = ''
-    return <a className="nav-link" name="order" onClick={this.handleClick}>Brand {badge}</a>
+    return <a className="nav-link" name="brand" onClick={this.handleClick}>Brand {badge}</a>
   }
 
   flavor() {
@@ -41,7 +41,7 @@ class Navbar extends Component {
       badge = <span className="badge badge-primary">{this.props.flavorList.length}</span>
     else
       badge = ''
-    return <a className="nav-link" name="order" onClick={this.handleClick}>Flavor {badge}</a>
+    return <a className="nav-link" name="flavor" onClick={this.handleClick}>Flavor {badge}</a>
   }
 
   recipe() {
@@ -50,7 +50,7 @@ class Navbar extends Component {
       badge = <span className="badge badge-primary">{this.props.recipeList.length}</span>
     else
       badge = ''
-    return <a className="nav-link" name="order" onClick={this.handleClick}>Recipe {badge}</a>
+    return <a className="nav-link" name="recipe" onClick={this.handleClick}>Recipe {badge}</a>
   }
 
 
