@@ -31,6 +31,7 @@ class FlavorAddForm extends Component {
       brand: this.state.brandID
     }
     this.props.addFlavor(this.props.token, message)
+    this.setState({flavorName: ''})
   }
 
   render() {
