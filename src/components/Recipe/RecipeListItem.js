@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { deleteRecipe } from '../../actions/apiActions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 class RecipeListItem extends Component {
   constructor(props) {
@@ -47,12 +49,23 @@ class RecipeListItem extends Component {
       lastMixed = year + '-' + month + '-' + dt
     }
 
+    let stars = (
+      <span>
+    <FontAwesomeIcon icon="star" />
+    <FontAwesomeIcon icon="star" />
+    <FontAwesomeIcon icon="star" />
+    <FontAwesomeIcon icon="star" />
+    <FontAwesomeIcon icon="star" />
+      </span>
+    )
+
     return (
       <tr>
         <td className="align-middle">
         <a id={this.props.item._id} onClick={this.handleClick}>{this.props.item.name}</a>
         </td>
         <td className="align-middle">
+          {stars}
         </td>
         <td className="align-middle">
           {missing}

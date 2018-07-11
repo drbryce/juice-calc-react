@@ -8,7 +8,11 @@ import Navbar from './components/Navbar'
 import RecipeIndividual from './components/Recipe/RecipeIndividual'
 import DBController from './controllers/dbController'
 import { connect } from 'react-redux'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 import './App.css';
+
+library.add(faStar)
 
 class App extends Component {
   constructor(props) {
